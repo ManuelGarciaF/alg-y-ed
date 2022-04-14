@@ -33,12 +33,3 @@
 
 # IDE settings folder
 .idea
-
-# Ignore all files without extensions
-*
-
-# Unignore all with extensions
-!*.*
-
-# Unignore all dirs
-!*/
