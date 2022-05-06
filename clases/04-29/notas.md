@@ -33,7 +33,7 @@
 
 ## Tipo Abstracto de Dato (TAD)
 
-- Esta compuesto por una estructura y funciones. (Equivalente a una clase)
+- Esta compuesto por una estructura y funciones. (Equivalente a metodos)
 - Funciones incluidas en el TAD deben comenzar con el nombre de la estructura.
 
 ## Sobrecargar funciones
