@@ -149,75 +149,206 @@ string intToString(int i) {
   return str;
 }
 
-// TODO: Ultimo realizado
 int stringToInt(string s, int b) {
   int sum = 0;
-  for (int i = length(s); i > 0; i--) {
-    /* sum += pow() */
+  int exponent = 0;
+  for (int i = length(s) - 1; i >= 0; i--) {
+    sum += pow(b, exponent) * charToInt(s[i]);
+    exponent++;
+  }
+  return sum;
+}
+
+int stringToInt(string s) { return stringToInt(s, 10); }
+
+string charToString(char c) {
+  string s = "";
+  s += c;
+  return s;
+}
+
+char stringToChar(string s) { return s[0]; }
+
+string stringToString(string s) { return s; }
+
+string doubleToString(double d) {
+  string s = "";
+
+  int pEntera = (int)d;
+
+  // Solo admite hasta 9 digitos luego de el punto.
+  int pFraccionaria = (d - pEntera) * 1000000000;
+
+  s += intToString(pEntera);
+  s += ".";
+  s += intToString(pFraccionaria);
+
+  // Remover caracteres del final de la string hasta que el ultimo no sea 0.
+  while (s[length(s) - 1] == '0') {
+    s.pop_back();
+  }
+
+  return s;
+}
+
+double stringToDouble(string s) {
+  double d = 0;
+
+  int indexPunto = indexOf(s, '.');
+  int pEntera = stringToInt(substring(s, 0, indexPunto));
+  int pFraccionaria = stringToInt(substring(s, indexPunto + 1));
+
+  d += pEntera;
+
+  // Multiplicar la parte fraccionaria  por 10^-n, siendo n la cantidad de
+  // digitos de pFraccionaria.
+  d += (double)pFraccionaria * pow(10, -(digitCount(pFraccionaria)));
+
+  return d;
+}
+
+bool isEmpty(string s) { return (s[0] == '\0'); }
+
+bool startsWith(string s, string x) {
+  return (substring(s, 0, length(x)) == x);
+}
+
+bool endsWith(string s, string x) {
+  return substring(s, length(s) - length(x)) == x;
+}
+
+bool contains(string s, char c) {
+  for (int i = 0; i < length(s); i++) {
+    if (s[i] == c) {
+      return true;
+    }
+  }
+  return false;
+}
+
+string replace(string s, char oldChar, char newChar) {
+  while (contains(s, oldChar)) {
+    s[indexOf(s, oldChar)] = newChar;
+  }
+  return s;
+}
+
+string insertAt(string s, int pos, char c) {
+  string sFinal = "";
+  sFinal += substring(s, 0, pos);
+  sFinal += c;
+  sFinal += substring(s, pos);
+  return sFinal;
+}
+
+string removeAt(string s, int pos) {
+  string sFinal = "";
+  sFinal += substring(s, 0, pos);
+  sFinal += substring(s, pos + 1);
+  return sFinal;
+}
+
+string ltrim(string s) {
+  while (s[0] == ' ') {
+    // Remover el primer caracter.
+    s = substring(s, 1);
+  }
+  return s;
+}
+
+string rtrim(string s) {
+  while (s[length(s) - 1] == ' ') {
+    // Remover el ultimo caracter.
+    s = substring(s, 0, length(s) - 2);
+  }
+  return s;
+}
+
+string trim(string s) { return rtrim(ltrim(s)); }
+
+string replicate(char c, int n) {
+  string s = "";
+  for (int i = 0; i < n; i++) {
+    s += c;
+  }
+  return s;
+}
+
+string spaces(int n) { return replicate(' ', n); }
+
+string lpad(string s, int n, char c) {
+  int padLength = n - length(s);
+  return replicate(c, padLength) + s;
+}
+
+string rpad(string s, int n, char c) {
+  int padLength = n - length(s);
+  return s + replicate(c, padLength);
+}
+
+string cpad(string s, int n, char c) {
+  int padLength = (n - length(s)) / 2;
+  return replicate(c, padLength) + s + replicate(c, padLength);
+}
+
+bool isDigit(char c) { return (charToInt(c) < 10 && charToInt(c) >= 0); }
+
+bool isLetter(char c) { return charToInt(c) >= 10; }
+
+bool isUpperCase(char c) { return ((int)c >= 65 && (int)c <= 90); }
+
+bool isLowerCase(char c) { return (c >= 97 && c <= 122); }
+
+char toUpperCase(char c) {
+  if (!(isLetter(c) && isLowerCase(c))) {
+    return c;
+  }
+
+  // Realizar la conversion segun la tabla ascii.
+  return ((int)c - 32);
+}
+
+char toLowerCase(char c) {
+  if (!(isLetter(c) && isUpperCase(c))) {
+    return c;
+  }
+
+  // Realizar la conversion segun la tabla ascii.
+  return ((int)c + 32);
+}
+
+string toUpperCase(string s) {
+  for (int i = 0; i < length(s); i++) {
+    s[i] = toUpperCase(s[i]);
+  }
+  return s;
+}
+
+string toLowerCase(string s) {
+  for (int i = 0; i < length(s); i++) {
+    s[i] = toLowerCase(s[i]);
+  }
+  return s;
+}
+
+int cmpString(string a, string b) {
+  if (a > b) {
+    return 1;
+  }
+  if (a < b) {
+    return -1;
   }
   return 0;
 }
 
-int stringToInt(string s) { return 0; }
-
-string charToString(char c) { return ""; }
-
-char stringToChar(string s) { return 'X'; }
-
-string stringToString(string s) { return ""; }
-
-string doubleToString(double d) { return ""; }
-
-double stringToDouble(string s) { return 1.1; }
-
-bool isEmpty(string s) { return true; }
-
-bool startsWith(string s, string x) { return true; }
-
-bool endsWith(string s, string x) { return true; }
-
-bool contains(string s, char c) { return true; }
-
-string replace(string s, char oldChar, char newChar) { return ""; }
-
-string insertAt(string s, int pos, char c) { return ""; }
-
-string removeAt(string s, int pos) { return ""; }
-
-string ltrim(string s) { return ""; }
-
-string rtrim(string s) { return ""; }
-
-string trim(string s) { return ""; }
-
-string replicate(char c, int n) { return ""; }
-
-string spaces(int n) { return ""; }
-
-string lpad(string s, int n, char c) { return ""; }
-
-string rpad(string s, int n, char c) { return ""; }
-
-string cpad(string s, int n, char c) { return ""; }
-
-bool isDigit(char c) { return true; }
-
-bool isLetter(char c) { return true; }
-
-bool isUpperCase(char c) { return true; }
-
-bool isLowerCase(char c) { return true; }
-
-char toUpperCase(char c) { return 'X'; }
-
-char toLowerCase(char c) { return 'X'; }
-
-string toUpperCase(string s) { return ""; }
-
-string toLowerCase(string s) { return ""; }
-
-int cmpString(string a, string b) { return 0; }
-
-int cmpDouble(double a, double b) { return 0; }
+int cmpDouble(double a, double b) {
+  if (a > b) {
+    return 1;
+  }
+  if (a < b) {
+    return -1;
+  }
+  return 0;
+}
 
 #endif

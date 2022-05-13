@@ -15,9 +15,7 @@
 using namespace std;
 
 int main() {
-  string a = "John|Paul|George|Ringo";
-
-  cout << intToString(12354) << endl;
+  // Hola :)
   return 0;
 }
 
