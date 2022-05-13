@@ -16,11 +16,6 @@ using namespace std;
 
 int main() {
   // Hola :)
-  string s = "Esto es una prueba";
-  int p = indexOf(s, "una");
-  cout << p << endl; // muestra: 8
-  p = indexOf(s, "jamon");
-  cout << p << endl; // muestra: algun valor negativo
   return 0;
 }
 
