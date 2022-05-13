@@ -52,8 +52,13 @@ int indexOf(string s, char c) { return indexOf(s, c, 0); }
 int indexOf(string s, string toSearch, int offset) {
   // Iterar sobre s
   for (int i = 0; s[i] != '\0'; i++) {
+    // Evitar error de indexación fuera de rango.
+    if (i + length(toSearch) > length(s)) {
+      return -1;
+    }
+
     // Comparar el substring de s[i] hasta el largo de toSearch con toSearch
-    if (substring(s, s[i], length(toSearch)) == toSearch) {
+    if (substring(s, i, i + length(toSearch)) == toSearch) {
       return i;
     }
   }
