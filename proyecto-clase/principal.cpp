@@ -15,7 +15,7 @@
 using namespace std;
 
 int main() {
-  // Hola :)
+  // :)
   return 0;
 }
 
