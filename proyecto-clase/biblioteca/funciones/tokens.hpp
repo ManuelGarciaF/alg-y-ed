@@ -28,7 +28,6 @@ void addToken(string &s, char sep, string t) {
   s += t;
 }
 
-// TODO: ARREGLAR ESTO.
 string getTokenAt(string s, char sep, int i) {
   for (int j = 0; j < i; j++) {
     // Remover el primer item del token.
