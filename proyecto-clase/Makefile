@@ -5,4 +5,4 @@ RM = rm -f
 all: main
 
 main: principal.cpp
-	$(CXX) $(CFLAGS) -o principal principal.cpp
+	$(CXX) $(CFLAGS) -o principal.out principal.cpp
