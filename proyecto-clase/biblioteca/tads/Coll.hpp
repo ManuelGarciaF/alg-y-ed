@@ -17,14 +17,11 @@ template <typename T> Coll<T> coll(char sep) {
   Coll<T> c;
   c.token = "";
   c.sep = sep;
+  c.currIndex = 0;
   return c;
 }
 
-template <typename T> Coll<T> coll() {
-  Coll<T> c;
-  c.sep = "|";
-  return c;
-}
+template <typename T> Coll<T> coll() { return coll<T>('|'); }
 
 template <typename T> int collSize(Coll<T> c) {
   return tokenCount(c.token, c.sep);
@@ -64,19 +61,22 @@ template <typename T>
 void collSort(Coll<T> &c, int cmpTT(T, T), T tFromString(string),
               string tToString(T)) {}
 
-template <typename T> bool collHasNext(Coll<T> c) { return true; }
+template <typename T> bool collHasNext(Coll<T> c) {
+  return c.currIndex < collSize(c);
+}
 
 template <typename T> T collNext(Coll<T> &c, T tFromString(string)) {
-  T t;
+  T t = collGetAt<T>(c, c.currIndex, tFromString);
+  c.currIndex++;
   return t;
 }
 
 template <typename T>
 T collNext(Coll<T> &c, bool &endOfColl, T tFromString(string)) {
-  T t;
-  return t;
+  endOfColl = !collHasNext(c);
+  return collNext(c, tFromString);
 }
 
-template <typename T> void collReset(Coll<T> &c) {}
+template <typename T> void collReset(Coll<T> &c) { c.currIndex = 0; }
 
 #endif
