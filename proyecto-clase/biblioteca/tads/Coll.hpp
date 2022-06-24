@@ -59,7 +59,22 @@ int collFind(Coll<T> c, K k, int cmpTK(T, K), T tFromString(string)) {
 
 template <typename T>
 void collSort(Coll<T> &c, int cmpTT(T, T), T tFromString(string),
-              string tToString(T)) {}
+              string tToString(T)) {
+  bool swapped;
+  do {
+    swapped = false;
+    for (int i = 1, len = collSize(c); i < len; i++) {
+      T primerElem = collGetAt<T>(c, i - 1, tFromString);
+      T segundoElem = collGetAt<T>(c, i, tFromString);
+      if (cmpTT(primerElem, segundoElem) < 0) {
+        // Cambiar de lugar ambos elementos.
+        collSetAt<T>(c, segundoElem, i - 1, tToString);
+        collSetAt<T>(c, primerElem, i, tToString);
+        swapped = true;
+      }
+    }
+  } while (swapped);
+}
 
 template <typename T> bool collHasNext(Coll<T> c) {
   return c.currIndex < collSize(c);

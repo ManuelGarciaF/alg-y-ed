@@ -14,8 +14,8 @@
 #include <stdio.h>
 using namespace std;
 
-int main() {
-  return 0;
-}
+int cmpInt(int a, int b) { return a - b; }
+
+int main() { return 0; }
 
 #endif
