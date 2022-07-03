@@ -36,3 +36,6 @@
 
 #Alg tools
 AlgoritmosTools_v3.13/output_files/
+
+# Archivos .dat para problemas
+*.dat
