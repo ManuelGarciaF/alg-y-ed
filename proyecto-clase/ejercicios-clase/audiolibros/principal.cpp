@@ -1,13 +1,13 @@
 #include "principal.hpp"
-#include "biblioteca/funciones/files.hpp"
-#include "biblioteca/funciones/strings.hpp"
-#include "biblioteca/funciones/tokens.hpp"
-#include "biblioteca/tads/Array.hpp"
-#include "biblioteca/tads/Coll.hpp"
-#include "biblioteca/tads/List.hpp"
-#include "biblioteca/tads/Map.hpp"
-#include "biblioteca/tads/Queue.hpp"
-#include "biblioteca/tads/Stack.hpp"
+#include "../../biblioteca/funciones/files.hpp"
+#include "../../biblioteca/funciones/strings.hpp"
+#include "../../biblioteca/funciones/tokens.hpp"
+#include "../../biblioteca/tads/Array.hpp"
+#include "../../biblioteca/tads/Coll.hpp"
+#include "../../biblioteca/tads/List.hpp"
+#include "../../biblioteca/tads/Map.hpp"
+#include "../../biblioteca/tads/Queue.hpp"
+#include "../../biblioteca/tads/Stack.hpp"
 #include <cstdio>
 #include <iostream>
 
@@ -71,11 +71,13 @@ void proceso(Coll<RLibro> &cLi, int idLibro, int contMin, Coll<RRelator> &cRe) {
   if (porcentajeEscuchado > 75) {
     int indexRelatorLibroLeido = collFind<RRelator>(
         cRe, libroLeido.libro.idRelator, cmpRRelatorId, rRelatorFromString);
-    RRelator relatorLibroLeido = collGetAt<RRelator>(cRe, indexRelatorLibroLeido, rRelatorFromString);
+    RRelator relatorLibroLeido =
+        collGetAt<RRelator>(cRe, indexRelatorLibroLeido, rRelatorFromString);
 
     relatorLibroLeido.cont++;
 
-    collSetAt<RRelator>(cRe, relatorLibroLeido, indexRelatorLibroLeido, rRelatorToString);
+    collSetAt<RRelator>(cRe, relatorLibroLeido, indexRelatorLibroLeido,
+                        rRelatorToString);
   }
 }
 
@@ -92,7 +94,8 @@ void muestroPto1(Coll<RLibro> cLi) {
 }
 
 void muestroPto2(Coll<RRelator> cRe) {
-  collSort<RRelator>(cRe, cmpRRelatorReproducciones, rRelatorFromString, rRelatorToString);
+  collSort<RRelator>(cRe, cmpRRelatorReproducciones, rRelatorFromString,
+                     rRelatorToString);
 
   int i = 1;
   while (collHasNext<RRelator>(cRe)) {

@@ -36,6 +36,8 @@
 
 #Alg tools
 AlgoritmosTools_v3.13/output_files/
+AlgoritmosTools_v3.13/stderr.txt
+AlgoritmosTools_v3.13/algoritmos.properties
 
 # Archivos .dat para problemas
 *.dat

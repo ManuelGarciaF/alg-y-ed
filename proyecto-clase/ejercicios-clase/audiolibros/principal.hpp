@@ -1,8 +1,8 @@
 #ifndef _MAINHPP
 #define _MAINHPP
-#include "biblioteca/funciones/strings.hpp"
-#include "biblioteca/funciones/tokens.hpp"
-#include "biblioteca/tads/Coll.hpp"
+#include "../../biblioteca/funciones/strings.hpp"
+#include "../../biblioteca/funciones/tokens.hpp"
+#include "../../biblioteca/tads/Coll.hpp"
 #include <cstring>
 #include <sstream>
 #include <stdlib.h>
