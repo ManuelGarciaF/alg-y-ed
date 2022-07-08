@@ -35,9 +35,9 @@
 .idea
 
 #Alg tools
-AlgoritmosTools_v3.13/output_files/
-AlgoritmosTools_v3.13/stderr.txt
-AlgoritmosTools_v3.13/algoritmos.properties
+algtools/stderr.txt
+algtools/output_files/**
+algtools/algoritmos.properties
 
 # Archivos .dat para problemas
 *.dat
