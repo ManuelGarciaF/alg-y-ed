@@ -21,7 +21,7 @@ int main() {
   Coll<Consorcio> listaConsorcios = cargarConsorcios();
 
   // Iterar sobre cada consorcio.
-  collReset(listaGastos);
+  collReset(listaConsorcios);
   while (collHasNext(listaConsorcios)) {
     Consorcio c = collNext<Consorcio>(listaConsorcios, consorcioFromString);
     int nroDeptos = c.cantPisos * c.dtosPorPiso;

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Compile
-gcc -Wall ./main.c -o main.dat
+gcc -Wall ./main.c -o main.out
 
 # Run
-./main.dat
+./main.out
 
 # Delete executable
 rm -f ./main.dat
